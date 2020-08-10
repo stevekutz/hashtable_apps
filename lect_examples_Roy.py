@@ -22,24 +22,52 @@ def fib_1(n):
 
 # at index 4
 # starting at index[0] the 'first' 1: the index[4] fib number is 5
-print(fib_1(3)) # 2
-print(fib_1(5)) # 5
-print(fib_1(6)) # 8
-print(fib_1(8)) #21
+# print(fib_1(3)) # 2
+# print(fib_1(5)) # 5
+# print(fib_1(6)) # 8
+# print(fib_1(8)) #21
 
-print(f' this should take longer')
-t1 = time.time()
-print(fib_1(35))  # 9227465  because our recursion has exponential complexity
+# print(f' this should take longer')
+# t1 = time.time()
+# print(fib_1(35))  # 9227465  because our recursion has exponential complexity
 
-print("Time to find fib: %f " % (time.time() - t1))  # Time to find fib: 3.014418
+# print("Time to find fib: %f " % (time.time() - t1))  # Time to find fib: 3.014418
 
 # NOW do same thing but add a cache tp save previously calculated values
+# cache = {}
+# def fib(n):
+#      if n <= 1:
+#           return n
+#      if n in cache:
+#           return cache[n]
+
+#      else:
+#           cache[n] = fib(n-1) + fib(n-2) 
+#           # print(f' current cache is {cache[n]}')
+#      return cache[n]             
+
+# print(f' this should go fast !!! ')
+# t1 = time.time()
+# print(fib(35))  # 9227465  because we cached previously used fib seq values
+
+# print("Time to find fib: %f " % (time.time() - t1))  # Time to find fib: 0.000025
+
+# memoization or memoisation is an optimization technique used primarily to speed up 
+# computer programs by storing the results of expensive function calls and returning the 
+# cached result when the same inputs occur again
+
+# refactored
 cache = {}
 def fib(n):
      if n <= 1:
           return n
-     if n in cache:
-          return cache(n)
+     if n not in cache:
+          cache[n] = fib(n-1) + fib(n-2)     
 
-     else:
-          cache[n] = fib(n-1) + fib(n-2)        
+     return cache[n]
+
+print(f' this should go fast as well, just refactored !!! ')
+t1 = time.time()
+print(fib(35))  # 9227465  because we cached previously used fib seq values
+
+print("Time to find fib: %f " % (time.time() - t1))  # Time to find fib: 0.000024          
