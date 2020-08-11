@@ -23,3 +23,9 @@ count=wordcount('alice.txt')
 filtered={key:value for key, value in count.items() if value <20 and value>18 }
 
 print(filtered)
+
+# print(count)
+
+first_twice = {key:value for key, value in sorted(count.items()) if value == 2}
+for k,v in first_twice.items():
+     print(f' {k}:{v}  ')

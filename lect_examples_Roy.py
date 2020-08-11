@@ -1,4 +1,4 @@
-import time
+import time, math
 
 # fib sequence
 # num is sum of previous 2 numbers
@@ -57,17 +57,116 @@ def fib_1(n):
 # cached result when the same inputs occur again
 
 # refactored
-cache = {}
-def fib(n):
-     if n <= 1:
-          return n
-     if n not in cache:
-          cache[n] = fib(n-1) + fib(n-2)     
+# cache = {}
+# def fib(n):
+#      if n <= 1:
+#           return n
+#      if n not in cache:
+#           cache[n] = fib(n-1) + fib(n-2)     
 
-     return cache[n]
+#      return cache[n]
 
-print(f' this should go fast as well, just refactored !!! ')
-t1 = time.time()
-print(fib(35))  # 9227465  because we cached previously used fib seq values
+# print(f' this should go fast as well, just refactored !!! ')
+# t1 = time.time()
+# print(fib(35))  # 9227465  because we cached previously used fib seq values
 
-print("Time to find fib: %f " % (time.time() - t1))  # Time to find fib: 0.000024          
+# print("Time to find fib: %f " % (time.time() - t1))  # Time to find fib: 0.000024          
+
+
+# # Lookup table example with inverse roots
+# lookup_table = {}
+
+# def inverse_root(n):
+#      return 1/ math.sqrt(n)
+
+# def build_lookup_table():
+#      for i in range(1,1001):
+#           lookup_table[i] = inverse_root(i)
+
+# # build up some value to store and retrieve          
+# build_lookup_table()
+
+# t1 = time.time()
+# inverse_root(556)
+# print("Time to find inverse root: %f " % (time.time() - t1))
+
+
+# t1 = time.time()
+# print(lookup_table[556])
+# print("Time to lookup inverse root: %f " % (time.time() - t1))  # Time to find inverse root: 0.000006  
+
+# sorting dicts
+d = {
+     'Austin': 12,
+     'Michael': 24,
+     'Troy': 35,
+     'Jorge': 99,
+     'David': 42
+}
+
+# 
+print(f'{d}')
+# [('Austin', 12), ('David', 42), ('Jorge', 99), ('Michael', 24), ('Troy', 35)]
+
+
+##### CONVERT TO LIST EXAMPLES  
+# one method is to covert to a list  & we sort(by key) for fun
+list_from_dict = sorted(list(d.items()))  # [('Austin', 12), ('David', 42), ('Jorge', 99), ('Michael', 24), ('Troy', 35)]
+print(list_from_dict)
+
+# REMEMBER sort does sort in place and mututes orig list
+sort_list_from_dict = list(d.items())
+print(sort_list_from_dict)  # [('Austin', 12), ('Michael', 24), ('Troy', 35), ('Jorge', 99), ('David', 42)]
+# when we use sort, list is now changed and sorted
+sort_list_from_dict.sort()
+print(sort_list_from_dict)  # [('Austin', 12), ('David', 42), ('Jorge', 99), ('Michael', 24), ('Troy', 35)]
+
+## SORT by item value
+# Use list comprehension to sort dict
+print(f' v,k for k,v {sorted([(v,k) for k,v in d.items()])}') 
+# v,k for k,v [(12, 'Austin'), (24, 'Michael'), (35, 'Troy'), (42, 'David'), (99, 'Jorge')]
+
+print(f' k,v for k,v {sorted([(k,v) for k,v in d.items()])}') 
+# k,v for k,v [('Austin', 12), ('David', 42), ('Jorge', 99), ('Michael', 24), ('Troy', 35)]
+
+#### SWAP   key & value 
+# A dict comprehension to swap k & v
+reversed_dict = {v: k for k,v in d.items()}
+print(f' v: k  {reversed_dict} ')  
+# v: k  {12: 'Austin', 24: 'Michael', 35: 'Troy', 99: 'Jorge', 42: 'David'}
+
+# using lambda to sort by index using key parameter in sort
+sorted_list2 = list(d.items())
+print(f' List is : {sorted_list2}')
+
+
+def anon_func(pair):
+     return pair[1]
+
+sorted_list2.sort(reverse=True, key = anon_func)
+print(sorted_list2)
+# [('Jorge', 99), ('David', 42), ('Troy', 35), ('Michael', 24), ('Austin', 12)]
+
+# Another way  sort by index[1]>> value   & in REVERSE order
+sorted_list3 = list(d.items())
+sorted_list3.sort(reverse=True, key = lambda x: x[1])
+print(f' reverse sort vy value  {sorted_list3}')
+# reverse sort vy value  [('Jorge', 99), ('David', 42), ('Troy', 35), ('Michael', 24), ('Austin', 12)]
+
+
+# Another way
+sorted_list3.sort(reverse=True, key = lambda x: x[0])
+print(f' reverse sorted by key {sorted_list3}')
+# reverse sorted by key [('Troy', 35), ('Michael', 24), ('Jorge', 99), ('David', 42), ('Austin', 12)]
+
+# MORE lambda examples using map
+nums = [2, 7 ,3 ,1, 9, 5, 0]
+
+map_list = list(map(lambda x: x*2, nums))
+print(f'lambda map ex {map_list}')  # lambda map ex [4, 14, 6, 2, 18, 10, 0]
+
+# another way
+triple = lambda val: val*3
+map_list2 = list(map(triple, nums))
+print(f'calling lambda {map_list2}')
+print(f' nums is {nums}')

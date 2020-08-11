@@ -1,3 +1,5 @@
+## Hashtable fast because memory location(not linear like an array) is located via hashing
+
 # Declare list with [ ]
 
 x = ["first", "second", "third", "fourth"]
@@ -110,3 +112,4 @@ for item in list_dict:
 
 
 # Sort dictionary by key
+##
