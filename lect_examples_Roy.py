@@ -224,7 +224,7 @@ def print_letter_count(s):
      # BEST WAY
      # print out sorted dict using lambda, sort by value
      print({key: value for key, value in sorted(tally.items(), key = lambda item: item[1], reverse = True)})
-     # {'s': 5, 'i': 1, 'm': 1, 'p': 1, 'l': 1, 'y': 1}
+     # {'s': 5, 'i': 1, 'm': 1, 'p': 1, 'l': 1, 'y': 1}le
 
 s = "simply ssss"
 # print_letter_count(s)
