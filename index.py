@@ -20,7 +20,7 @@ def build_index(recs):
     index = {}
 
     for record in recs:
-        name, dept = record
+        name, dept = record # e.g. ("Alice", "Engineering")
 
         # Check if department is already in index
         if dept in index:
@@ -39,11 +39,14 @@ print(department_index)
 
 
 
-# # print all the departments
-# print(department_index.keys())
+# print all the departments
+print(department_index.keys()) # dict_keys(['Engineering', 'Sales', 'Marketing'])
+
 # # print everyone in Engineering:
-# print(department_index['Engineering'])
-# # print everyone in Sales:
-# print(department_index['Sales'])
+print(department_index['Engineering']) # # ['Alice', 'Dave', 'Erin', 'Frank']
+
+# # print everyone in Sales:  
+print(department_index['Sales']) # ['Bob', 'Carol', 'Sarah', 'Pranjal']
 
 # # print everyone in Marketing:
+print(department_index['Marketing']) # ['Grace', 'Charles', 'Brian', 'Jordan']
