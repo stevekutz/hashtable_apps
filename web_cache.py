@@ -33,7 +33,9 @@ def web_cache():
                # if diff_time > TIMEOUT_SECONDS:
                #      needs_refresh = True
 
+               # creates boolean     
                needs_refresh = diff_time > TIMEOUT_SECONDS
+               print(f' TIME: {needs_refresh}')
 
           if needs_refresh:
                print(f' GETTING FROM SERVER')
@@ -41,19 +43,8 @@ def web_cache():
                data = resp.read()
                cache[url] = CacheEntry(url, data)      
 
-          # if diff_time > TIMEOUT_SECONDS:
-          #      needs_refresh = True
-
-
-          # # if url not in cache:
-          # if needs_refresh:
-          #      print(f' cache MISS')
-          #      resp = urllib.request.urlopen(url)
-          #      data = resp.read()
-          #      cache[url] = data
-
-          # else:
-          #      print(f'!!! 💪💪💪 cache HIT 💪💪💪 ')     
+          else:
+               print(f'!!! 💪💪💪 cache HIT 💪💪💪 ')     
 
           print(cache[url].data[:60])  # just print last 60 bytes
 
