@@ -30,6 +30,7 @@ def build_index(recs):
         # else create new key with list with the name in it
             index[dept] = [name]
 
+    print(f' str represenation of dict {str(index)}') 
     return index
 
 department_index = build_index(records)
